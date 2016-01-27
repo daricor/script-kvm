@@ -1,2 +1,2 @@
 # script-kvm
-manage virtual machines on KVM
+script to manage virtual machines on KVM
