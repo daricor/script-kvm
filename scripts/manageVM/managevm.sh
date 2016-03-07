@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. arretVM.sh
+
 caseVM()
 {
 
@@ -18,7 +20,7 @@ echo "------GESTION DES MACHINES VIRTUELLES------"
 read choix
 
 case $choix in
-	"1") echo "arretVM";;
+	"1") arretVM;;
 	"2") echo "demmarrerVM";;
 	"3") echo "listerInfoVm";;
 	"4") echo "creerVM";;
