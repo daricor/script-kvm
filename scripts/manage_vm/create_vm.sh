@@ -113,10 +113,15 @@ secure_disk_size()
 
 	disk_size=$(whiptail --title "VM" --inputbox "Taille du disque (Mo)" 10 60 3>&1 1>&2 2>&3)
 
+<<<<<<< HEAD
 	if [ $? -ne 0 ]
 	then
 		exit
 	fi
+=======
+	secure_vm_name
+    secure_password
+>>>>>>> ab4f8ee7c17d834c40358e4b3bf021962499ea15
 
 	while [ -z $disk_size ]
 	do

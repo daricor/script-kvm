@@ -21,6 +21,10 @@ delete_vm()
 
                 if [ -e /var/lib/libvirt/images/${vm_choice}.qcow2 ]
                 then
+<<<<<<< HEAD
+=======
+                       
+>>>>>>> ab4f8ee7c17d834c40358e4b3bf021962499ea15
                         rm /var/lib/libvirt/images/${vm_choice}* 2> /dev/null
                 fi 
 
