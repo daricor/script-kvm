@@ -7,23 +7,11 @@ list_vm()
 
 	clear
 
-<<<<<<< HEAD
 	printf "%-5s| %-18s| %-10s| %-10s| %-14s| %-15s| %-10s| %-10s|\n" "Id" "Name" "State" "CPU" "Max_memory(kB)" "Used_memory(kB)" "Persistent" "Autostart" > /tmp/display.txt
 	printf "___________________________________________________________________________________________________________\n" >> /tmp/display.txt
 	for fichier in $liste_vm
 	do
 		test=$(virsh domstate $fichier | sed -n 1p)	
-=======
-
-
-printf "%-5s| %-18s| %-10s| %-10s| %-14s| %-15s| %-10s| %-10s|\n" "Id" "Name" "State" "CPU" "Max_memory(kB)" "Used_memory(kB)" "Persistent" "Autostart" > /tmp/display.txt
-printf "___________________________________________________________________________________________________________\n" >> /tmp/display.txt
-	for fichier in $liste_vm
-		do
-		
-
-			test=$(virsh domstate $fichier | sed -n 1p)	
->>>>>>> ab4f8ee7c17d834c40358e4b3bf021962499ea15
 
        		if [ "$test" == "running" ]	
        		then
@@ -52,39 +40,6 @@ printf "________________________________________________________________________
 	whiptail --title "VM" --msgbox "`cat /tmp/display.txt`" 20 115
 	rm /tmp/display.txt
 
-<<<<<<< HEAD
-=======
-       			Id=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 1p)             
-				Name=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 2p)          
-				State=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1 }' | sed -n 5p)
-				CPU=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 6p)   
-				Max_memory=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1 }' | sed -n 8p)    
-				Used_memory=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1 }' | sed -n 9p)    
-				Persistent=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 10p)     
-				Autostart=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 11p)   
-				printf "%-5s| %-18s| %-10s| %-10s| %-14s| %-15s| %-10s| %-10s\n" $Id $Name $State $CPU $Max_memory $Used_memory $Persistent $Autostart >> /tmp/display.txt
-				
-				else
-
-				Id=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 1p)             
-				Name=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 2p)          
-				State=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1 }' | sed -n 5p)
-				CPU=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 6p)   
-				Max_memory=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1 }' | sed -n 7p)    
-				Used_memory=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1 }' | sed -n 8p)    
-				Persistent=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 9p)     
-				Autostart=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 10p)   
-				printf "%-5s| %-18s| %-10s| %-10s| %-14s| %-15s| %-10s| %-10s\n" $Id $Name $State $CPU $Max_memory $Used_memory $Persistent $Autostart >> /tmp/display.txt
-			fi
-
-
-
-		done
-
-		whiptail --title "VM" --msgbox "`cat /tmp/display.txt`" 30 140
-
-		rm /tmp/display.txt
->>>>>>> ab4f8ee7c17d834c40358e4b3bf021962499ea15
 }
 
 stop_vm_list() 
@@ -94,19 +49,13 @@ stop_vm_list()
 
 	clear
 
-<<<<<<< HEAD
 	printf "%-5s| %-18s| %-10s| %-10s| %-10s| %-11s| %-10s| %-10s|\n" "Id" "Name" "State" "CPU" "Max_memory" "Used_memory" "Persistent" "Autostart" > /tmp/display2.txt
 	printf "__________________________________________________________________________________________________\n" >> /tmp/display2.txt
-=======
-printf "%-5s| %-18s| %-10s| %-10s| %-10s| %-11s| %-10s| %-10s|\n" "Id" "Name" "State" "CPU" "Max_memory" "Used_memory" "Persistent" "Autostart" > /tmp/display2.txt
-printf "__________________________________________________________________________________________________\n" >> /tmp/display2.txt
->>>>>>> ab4f8ee7c17d834c40358e4b3bf021962499ea15
 	for fichier in $liste_vm
 	do
 		test=$(virsh domstate $fichier | sed -n 1p)	
 
        		if [ "$test" == "running" ]	
-<<<<<<< HEAD
        		then
 			Id=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 1p)             
 			Name=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 2p)          
@@ -133,39 +82,5 @@ printf "________________________________________________________________________
 	whiptail --title "VM" --msgbox "`cat /tmp/display2.txt`" 20 115
 	rm /tmp/display2.txt
 
-=======
-       			
-       			then
-
-       			Id=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 1p)             
-				Name=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 2p)          
-				State=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1 }' | sed -n 5p)
-				CPU=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 6p)   
-				Max_memory=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1 }' | sed -n 8p)    
-				Used_memory=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1 }' | sed -n 9p)    
-				Persistent=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 10p)     
-				Autostart=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 11p)   
-				printf "%-5s| %-18s| %-10s| %-10s| %-10s| %-11s| %-10s| %-10s\n" $Id $Name $State $CPU $Max_memory $Used_memory $Persistent $Autostart >>/tmp/display2.txt
-
-				else
-
-				Id=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 1p)             
-				Name=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 2p)          
-				State=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1 }' | sed -n 5p)
-				CPU=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 6p)   
-				Max_memory=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1 }' | sed -n 7p)    
-				Used_memory=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1 }' | sed -n 8p)    
-				Persistent=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 9p)     
-				Autostart=$(virsh dominfo $fichier | awk -F':' '{ print $2 }' | awk -F" " '{ print $1,$2 }' | sed -n 10p)   
-				printf "%-5s| %-18s| %-10s| %-10s| %-10s| %-11s| %-10s| %-10s\n" $Id $Name $State $CPU $Max_memory $Used_memory $Persistent $Autostart >> /tmp/display2.txt
-			fi
-
-		done
-
-		whiptail --title "VM" --msgbox "`cat /tmp/display2.txt`" 30 140
-
-		rm /tmp/display2.txt
-
->>>>>>> ab4f8ee7c17d834c40358e4b3bf021962499ea15
 }
 
