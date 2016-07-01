@@ -35,7 +35,7 @@ secure_cpu_number()
 	echo "Nombres de CPU alloué :"
 	read cpu_number
 
-	until [ $cpu_number -lt 4 ]
+	until [ $cpu_number -le `lscpu | sed -n 4p | awk '{print $2}'` ]
 	do
 		echo -e "Votre nombre de cpu(s) alloué(s) est supérieur a 4.\n"
         	echo "Veuillez réessayer :"
@@ -62,7 +62,7 @@ create_vm()
 	let soustraction
 
 	secure_vm_name
-     	secure_password
+    secure_password
 
 	echo "Taille du disque (Mo) :"
 	read disk_size
@@ -88,10 +88,10 @@ create_vm()
 	   		soustraction=$(($disk_size-10000))
 	   		echo $soustraction
 
-	   		qemu-img create -f qcow2 -o preallocation=metadata /var/lib/libvirt/images/$vm_name.qcow2 $(($soustraction))M
+	   		qemu-img create -f qcow2 -o preallocation=metadata /var/lib/libvirt/images/${vm_name}2.qcow2 $(($soustraction))M
         		echo 63
 
-	   		virsh attach-disk --subdriver qcow2 --persistent $vm_name /var/lib/libvirt/images/${vm_name}dd.qcow2 vdb
+	   		virsh attach-disk --subdriver qcow2 --persistent $vm_name /var/lib/libvirt/images/${vm_name}2.qcow2 vdb
         		echo 75
 
 		fi

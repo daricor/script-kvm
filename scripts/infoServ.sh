@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function_print_infosev()
+function_print_infoserv()
 {
 
 whiptail --title "Informations Serveur" --msgbox  "

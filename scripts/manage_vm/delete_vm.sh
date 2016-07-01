@@ -16,10 +16,10 @@ delete_vm()
                 virsh destroy $vm_choice 2> /dev/null
                 virsh undefine $vm_choice 2> /dev/null
 
-                if [ -e /var/lib/libvirt/images/${vm_choice} ]
+                if [ -e /var/lib/libvirt/images/${vm_choice}.qcow2 ]
                 then
-                        rm /var/lib/libvirt/images/${vm_choice}.qcow2
-                        rm /var/lib/libvirt/images/${vm_choice}dd.qcow2 2> /dev/null
+                       
+                        rm /var/lib/libvirt/images/${vm_choice}* 2> /dev/null
                 fi 
                 
         elif [ "$answer" = "non" ]
