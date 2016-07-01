@@ -12,17 +12,14 @@ function_start_vm()
 	then
 		echo "Aucune VM est à l'arret"
 	else 
-		virsh list --all --state-shutoff --state-paused --state-other --inactive
-		echo "Veuillez saisir l'id ou le nom de la machine à démarrer"
-		read id 
-  
+		whiptail --title "VM" --msgbox "`virsh list --all --state-shutoff --state-paused --state-other --inactive`" 15 58
+		id=$(whiptail --inputbox "Veuillez saisir l'id ou le nom de la machine à démarrer" 8 78 --title "VM" 3>&1 1>&2 2>&3)
 		vm_state=$(virsh domstate $id)  # get back vm state
 
 		case $vm_state in
   			"paused") virsh resume $id ;;
 			* ) virsh start $id	;;
 		esac
-
 	fi
 
 }
@@ -39,5 +36,10 @@ start_vm()
 	do
 		function_start_vm
 	done
+
+	whiptail --title "VM" --msgbox "Machine démarrée avac succes" 15 58
+
+	menu_vm
+
 
 }

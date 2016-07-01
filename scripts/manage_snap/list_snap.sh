@@ -5,6 +5,11 @@ list_snap_cmd()
 	virsh snapshot-list "$vm_choice"
 }
 
+list_snap_print()
+{
+	whiptail --title "VM" --msgbox "`list_snap_cmd`" 20 90
+}
+
 
 list_snap()
 {
@@ -16,23 +21,12 @@ list_snap()
 
 	if [ -z "$result" ]
 	then
-		echo -e "Aucune sauvegarde n'existe pour cette VM.\n"
+		whiptail --title "VM" --msgbox "Aucune sauvegarde n'existe pour cette VM" 8 50
+		menu_snap
 	else
-		list_snap_cmd
+		whiptail --title "VM" --msgbox "`list_snap_cmd`" 20 90
+		menu_snap
 	fi
-
-	echo "Quelle action voulez-vous effectuer ?"
-        echo "1-Revenir au menu principal"
-        echo "2-Revenir au menu de gestion des sauvegardes"
-        echo -e "3-Revenir au listing des sauvegardes\n"
-	read choice
-
-        case $choice in
-	        "1") main_menu ;;
-        	"2") menu_snap ;;
-        	"3") list_snap ;;
-		*) echo "Entrée non autorisée";;
-        esac
 
 }
 

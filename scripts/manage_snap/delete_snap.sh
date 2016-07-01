@@ -6,25 +6,24 @@ delete_snap()
 
 	clear
 
-	list_snap_cmd
+	list_snap_print
 
-	echo "Saisir le nom de la sauvegarde à supprimer :"
-        read snap_name
-	
+	snap_name=$(whiptail --title "VM" --inputbox "Saisir le nom de la sauvegarde à supprimer" 10 60 3>&1 1>&2 2>&3)
+
+        if [ $? -ne 0 ]
+        then
+                exit
+        fi
+
         virsh snapshot-delete "$vm_choice" "$snap_name"
 
-	echo "Quelle action voulez-vous effectuer ?"
-	echo "1-Revenir au menu principal"
-	echo "2-Revenir au menu de gestion des sauvegardes"
-	echo -e "3-Relancer le menu de suppression de sauvegardes\n"
-	read choice
-
-	case $choice in
-        	"1") main_menu ;;
-        	"2") menu_snap ;;
- 		"3") delete_snap ;;
-           	*) echo "Entrée non autorisée";;
-	esac
-
+	if [ $? -eq 0 ]
+	then
+		whiptail --title "VM" --msgbox "La suppression s'est effectué avec succès" 8 50
+		menu_snap
+	else
+		whiptail --title "VM" --msgbox "ERREUR !!!" 8 5
+		menu_snap
+	fi
 
 }
